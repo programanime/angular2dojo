@@ -1,0 +1,37 @@
+<main class="container" role="main">
+  <h2>Money for Books: <input type="text" class="cash" [(ngModel)]="cash"></h2>
+  <h2>Cash left to buy books: <span>   {{cashLeft()| currency:'USD':true}}         </span> </h2>
+
+  <section class="card" *ngFor="let book of books" [class.library]="!book.isAvailable" >
+    <div class="panel-body">
+      <div class="photo">
+        <img src="{{book.image}}">
+      </div>
+      <table class="book-info">
+        <tr>
+          <td>
+            <h3>{{book.name}}</h3>
+            <p class="author">{{book.author}}</p>
+          </td>
+          <td>
+            <p class="price">{{book.price | currency:'USD':true}}</p>
+          </td>
+          <td>
+            <button class="button" *ngIf="book.isAvailable" (click)="buy(book)" >Buy book</button>
+            <a [routerLink]="['/book-detail', book.id]"  class="detail-link">Book detail</a>
+            <div *ngIf="!book.isAvailable">
+              <p class="status">Sold</p>
+              <button class="button-cancel" (click)="cancelBuy(book)">Cancel buying</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="price-total">
+    <h3>Total cost: {{costoTotal| currency:'USD':true}}</h3>
+    <p>         </p>
+  </div>
+</main>
+

@@ -1,0 +1,22 @@
+<section *ngIf="book" class="card">
+  <div class="panel-body">
+    <div class="photo">
+      <img [src]="book.image" [alt]="book.image">
+    </div>
+    <table class="book-info">
+      <tr>
+        <td>
+          <h3>{{book.name}}</h3>
+          <p class="author">{{book.author}}</p>
+          <p class="description">{{book.description}}</p>
+        </td>
+        <td>
+          <p class="price">{{book.price | currency:'USD':true}}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<button class="button" (click)="goBack()">Back</button>
+
